@@ -20,3 +20,22 @@ Route::get('/', function () {
     return Inertia::render('Welcome', []);
 });
 
+Route::prefix('/account')->name('account')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Account/List', []);
+    })->name('.list');
+
+    Route::get('/create', function () {
+        return Inertia::render('Account/Form', []);
+    })->name('.create');
+});
+
+Route::prefix('/deal')->name('deal')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Deal/List', []);
+    })->name('.list');
+
+    Route::get('/create', function () {
+        return Inertia::render('Deal/Form', []);
+    })->name('.create');
+});

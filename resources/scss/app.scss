@@ -6,3 +6,9 @@ body{
     font-family: 'Nunito Sans';
 }
 
+.small-container{
+    margin: 0 auto;
+    max-width: 500px
+}
+
+@import "./forms";

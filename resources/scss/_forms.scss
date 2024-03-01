@@ -1,0 +1,24 @@
+.form-label--required {
+    &::after {
+        content: '*';
+        margin-left: 4px;
+        color: $red;
+    }
+}
+
+.validation-error {
+    color: $red;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.error-message{
+    display: block;
+    color: var(--bs-danger);
+
+    &::first-letter{
+        text-transform: uppercase;
+    }
+}
