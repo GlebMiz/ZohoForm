@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,22 +19,10 @@ Route::get('/', function () {
     return Inertia::render('Welcome', []);
 });
 
-Route::prefix('/account')->name('account')->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Account/List', []);
-    })->name('.list');
+Route::get('account', function () {
+    return Inertia::render('Account/Form', []);
+})->name('account.create');
 
-    Route::get('/create', function () {
-        return Inertia::render('Account/Form', []);
-    })->name('.create');
-});
-
-Route::prefix('/deal')->name('deal')->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Deal/List', []);
-    })->name('.list');
-
-    Route::get('/create', function () {
-        return Inertia::render('Deal/Form', []);
-    })->name('.create');
-});
+Route::get('deal', function () {
+    return Inertia::render('Deal/Form', []);
+})->name('deal.create');

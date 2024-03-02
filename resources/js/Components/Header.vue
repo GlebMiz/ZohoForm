@@ -6,8 +6,8 @@ defineProps<HeaderInterface>();
 
 const links = [
     { key: 'home', name: 'Home', href: '/' },
-    { key: 'accounts', name: 'Accounts', href: route('account.list') },
-    { key: 'deals', name: 'Deals', href: route('deal.list') },
+    { key: 'accounts', name: 'Accounts', href: route('account.create') },
+    { key: 'deals', name: 'Deals', href: route('deal.create') },
 ];
 </script>
 <template>
