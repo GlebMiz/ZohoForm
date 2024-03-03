@@ -42,10 +42,6 @@ const submit = (values: any, { resetForm }: any) => {
             showPopover('Deal has been created');
         })
         .catch(function (error) {
-            if (error.response && error.response.status === 422) {
-                // Validation error
-                console.log(error.response.data.errors);
-            }
             removeLoader();
             alert('An error occurred while processing the form, please check that the fields are filled in correctly and try again.')
         });
