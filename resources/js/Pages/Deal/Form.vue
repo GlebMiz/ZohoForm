@@ -55,7 +55,7 @@ const submit = (values: any, { resetForm }: any) => {
 
 <template>
 
-    <Head title="Dashboard" />
+    <Head title="Create New Deal" />
     <MainLayout nav-active="deals">
         <div class="small-container">
             <h3 class="mb-3">Create Deal</h3>
