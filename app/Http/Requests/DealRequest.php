@@ -28,7 +28,7 @@ class DealRequest extends FormRequest
             'name' => 'required|string',
             'stage' => ['required', 'string', new StageRule],
             'account' => ['required', 'string', new AccountRule],
-            'date' => 'required|date|after_or_equal:today|before_or_equal:2099-12-31',
+            'date' => 'required|date|before_or_equal:2099-12-31',
         ];
     }
 }
