@@ -2,8 +2,9 @@
 import Multiselect from '@vueform/multiselect';
 
 defineProps<{
-    options: string[];
+    options: { value: string; label: string }[];
 }>();
+
 </script>
 
 <template>

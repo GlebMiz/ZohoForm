@@ -4,28 +4,24 @@ import { Head } from '@inertiajs/vue3';
 import SearchSelect from '@/Components/SearchSelect.vue'
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
+import { removeLoader, showLoader } from '@/scripts/loader';
+import axios from 'axios';
+import { showPopover } from '@/scripts/popover';
 
-const stageValues = [
-    'Qualification',
-    'Needs Analysis',
-    'Value Proposition',
-    'Identify Decision Makers',
-    'Proposal/Price Quote',
-    'Negotiation/Review',
-    'Closed Won',
-    'Closed Lost',
-    'Closed Lost to Competition'
-];
+const props = defineProps<{
+    accounts?: { value: string; label: string }[];
+    stage?: string[];
+}>();
 
-const accountValues = [
-    'Gleb Mizghulin',
-    'Pablo Escobar'
-];
+const stageValues = props.stage ? props.stage : [];
+const accountValues = props.accounts ? props.accounts : [];
+
+const accountValidValues = accountValues.map(obj => obj.value);
 
 const schema = yup.object({
     name: yup.string().required(),
     stage: yup.string().required().oneOf(stageValues, 'Please select valid stage'),
-    account: yup.string().required().oneOf(accountValues, 'Please select valid account'),
+    account: yup.string().required().oneOf(accountValidValues, 'Please select valid account'),
     date: yup.date().required('Please enter a date').max(new Date(2099, 11, 31), 'Please enter valid date').typeError('Please enter valid date'),
 });
 
@@ -34,13 +30,31 @@ const initialValues = {
     date: new Date().toISOString().split('T')[0]
 };
 
-const submit = () => {
-    console.log('Form has been submited!');
+const submit = (values: any, { resetForm }: any) => {
+    showLoader();
+    axios.post(route('deal.store'), values)
+        .then(function () {
+            removeLoader();
+            resetForm();
+            setTimeout(() => {
+                resetForm();
+            }, 10)
+            showPopover('Deal has been created');
+        })
+        .catch(function (error) {
+            if (error.response && error.response.status === 422) {
+                // Validation error
+                console.log(error.response.data.errors);
+            }
+            removeLoader();
+            alert('An error occurred while processing the form, please check that the fields are filled in correctly and try again.')
+        });
 };
 
 </script>
 
 <template>
+
     <Head title="Dashboard" />
     <MainLayout nav-active="deals">
         <div class="small-container">
@@ -79,4 +93,6 @@ const submit = () => {
     </MainLayout>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss"></style>import { showLoader, removeLoader } from '@/scripts/loader';
+import { showPopover } from '@/scripts/popover';
+import axios from 'axios';

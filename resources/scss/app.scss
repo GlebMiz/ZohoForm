@@ -11,4 +11,33 @@ body{
     max-width: 500px
 }
 
+.loader-wrapper{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.f_popover{
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background-color: var(--bs-success);
+    color: var(--bs-white);
+    transition: opacity .2s ease-out;
+    opacity: 0;
+    border-radius: 4px;
+
+    &.popover--showed{
+        opacity: 1;
+    }
+}
+
 @import "./forms";

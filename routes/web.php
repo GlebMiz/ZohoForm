@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DealController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,10 +20,12 @@ Route::get('/', function () {
     return Inertia::render('Welcome', []);
 });
 
-Route::get('account', function () {
-    return Inertia::render('Account/Form', []);
-})->name('account.create');
+Route::prefix('account')->name('account')->group(function(){
+    Route::get('/', [AccountController::class, 'form'])->name('.create');
+    Route::post('/', [AccountController::class, 'store'])->name('.store');
+});
 
-Route::get('deal', function () {
-    return Inertia::render('Deal/Form', []);
-})->name('deal.create');
+Route::prefix('deal')->name('deal')->group(function(){
+    Route::get('/', [DealController::class, 'form'])->name('.create');
+    Route::post('/', [DealController::class, 'store'])->name('.store');
+});
