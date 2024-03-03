@@ -4,7 +4,7 @@ import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Welcome" />
     <MainLayout nav-active="home" >
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="fs-3 fw-bold text-body-emphasis">Zoho web form | Gleb Mighulin</h1>
