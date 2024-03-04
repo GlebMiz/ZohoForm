@@ -89,6 +89,4 @@ const submit = (values: any, { resetForm }: any) => {
     </MainLayout>
 </template>
 
-<style lang="scss"></style>import { showLoader, removeLoader } from '@/scripts/loader';
-import { showPopover } from '@/scripts/popover';
-import axios from 'axios';
+<style lang="scss"></style>
